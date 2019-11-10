@@ -73,7 +73,6 @@ namespace GyokaiShooter
         private asd.GeometryObject2D gquit = new asd.GeometryObject2D();
         protected override void OnAdded()
         {
-
             gstart.Shape = new asd.RectangleShape
             {
                 DrawingArea = new asd.RectF(0, 72, 200, 24)
@@ -94,8 +93,6 @@ namespace GyokaiShooter
                 DrawingArea = new asd.RectF(0, 164, 200, 24)
             };
             AddObject(gquit);
-
-            
 
             csha.OuterDiameter = 2;
             cursor.Shape = csha;
@@ -127,6 +124,10 @@ namespace GyokaiShooter
             else if (csha.GetIsCollidedWith(gquit.Shape))
             {
                 gquit.Color = coll;
+                if(asd.Engine.Mouse.LeftButton.ButtonState == asd.ButtonState.Push)
+                {
+                    asd.Engine.Close();
+                }
             }
         }
     }
