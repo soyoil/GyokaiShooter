@@ -19,7 +19,7 @@ namespace GyokaiShooter
             };
 
             // Altseedを初期化する。
-            asd.Engine.Initialize("Empty", 640, 480, engineOption);
+            asd.Engine.Initialize("GyokaiShooter", 640, 480, engineOption);
 
             var title = new Title();
             asd.Engine.ChangeScene(title);
