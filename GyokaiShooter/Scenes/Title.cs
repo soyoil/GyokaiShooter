@@ -10,10 +10,20 @@ namespace GyokaiShooter
     {
         protected override void OnRegistered()
         {
-            var titleCols = new TitleCols();
-            AddLayer(titleCols);
-            var titleTexts = new TitleTexts();
-            AddLayer(titleTexts);
+            //var titleCols = new TitleCols();
+            //AddLayer(titleCols);
+            //var titleTexts = new TitleTexts();
+            //AddLayer(titleTexts);
+            var button = new Objects.Button();
+            Objects.Button.keyValuePairs = new Dictionary<string, Action>()
+            {
+                {"Start Game", () => {} },
+                {"Records", () => {} },
+                {"Option", () => {} },
+                {"Quit", () => {asd.Engine.Close(); } }
+            };
+            Objects.Button.buttonPos = new asd.Vector2DF(10, 65);
+            AddLayer(button);
         }
 
     }
@@ -73,6 +83,14 @@ namespace GyokaiShooter
         private asd.GeometryObject2D gquit = new asd.GeometryObject2D();
         protected override void OnAdded()
         {
+            var buttons = new Dictionary<string, Action>()
+            {
+                {"Start Game", () => {} },
+                {"Records", () => {} },
+                {"Option", () => {} },
+                {"Quit", () => {asd.Engine.Close(); } }
+            };
+
             gstart.Shape = new asd.RectangleShape
             {
                 DrawingArea = new asd.RectF(0, 72, 200, 24)
