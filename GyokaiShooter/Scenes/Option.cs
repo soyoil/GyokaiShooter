@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GyokaiShooter
+namespace GyokaiShooter.Scenes
 {
-    class Title : asd.Scene
+    class Option : asd.Scene
     {
         protected override void OnRegistered()
         {
@@ -14,11 +14,9 @@ namespace GyokaiShooter
             {
                 keyValuePairs = new Dictionary<string, Action>()
                 {
-                    {"Start Game", () => {} },
-                    {"Records", () => {} },
-                    {"Option", () => {
-                            var option = new Scenes.Option();
-                            asd.Engine.ChangeScene(option);
+                    {"Back", () => {
+                            var title = new Title();
+                            asd.Engine.ChangeScene(title);
                         }
                     },
                     {"Quit", () => {asd.Engine.Close(); } }
