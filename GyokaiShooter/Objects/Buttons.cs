@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,11 @@ namespace GyokaiShooter.Objects
         asd.Color coll = new asd.Color(10, 10, 200, 255);
         asd.Color whi = new asd.Color(255, 255, 255, 255);
         asd.Font menuFont = asd.Engine.Graphics.CreateDynamicFont("", 24, new asd.Color(255, 154, 33, 255), 1, new asd.Color(255, 255, 255, 255));
-        asd.GeometryObject2D cursor = new asd.GeometryObject2D();
+        List<asd.GeometryObject2D> buttons = new List<asd.GeometryObject2D>();
+        int pointer = 0;
 
-        public static Dictionary<string, Action> keyValuePairs { get; set; }
-        public static asd.Vector2DF buttonPos { get; set; }
+        public Dictionary<string, Action> keyValuePairs { get; set; }
+        public asd.Vector2DF buttonPos { get; set; }
 
         protected override void OnAdded()
         {
@@ -35,24 +37,39 @@ namespace GyokaiShooter.Objects
                 {
                     DrawingArea = new asd.RectF(buttonPos.X, buttonPos.Y + 30*counter + 7, 200, 24),
                 };
+                object2D.AddChild(text, asd.ChildManagementMode.RegistrationToLayer | asd.ChildManagementMode.Disposal, asd.ChildTransformingMode.All);
+                buttons.Add(object2D);
                 AddObject(object2D);
-                AddObject(text);
                 counter++;
             }
-
-            var cursorShape = new asd.CircleShape()
-            {
-                OuterDiameter = 1
-            };
-            cursor.Shape = cursorShape;
-            cursor.Color = new asd.Color(255, 0, 255, 0);
-            AddObject(cursor);
         }
 
         protected override void OnUpdated()
         {
-            cursor.Position = asd.Engine.Mouse.Position;
-            
+            if(asd.Engine.Keyboard.GetKeyState(asd.Keys.Down) == asd.ButtonState.Push)
+            {
+                pointer++;
+                if (pointer == buttons.Count) pointer = 0;
+            }else if(asd.Engine.Keyboard.GetKeyState(asd.Keys.Up) == asd.ButtonState.Push)
+            {
+                pointer--;
+                if (pointer == -1) pointer = buttons.Count - 1;
+            }
+            foreach(asd.GeometryObject2D object2D in buttons)
+            {
+                object2D.Color = whi;
+            }
+            buttons[pointer].Color = coll;
+            if(asd.Engine.Keyboard.GetKeyState(asd.Keys.Enter) == asd.ButtonState.Push)
+            {
+                string buttonName = "";
+                var hoge = buttons[pointer].Children;
+                foreach(asd.TextObject2D fuga in hoge)
+                {
+                    buttonName = fuga.Text;
+                }
+                keyValuePairs[buttonName]();
+            }
         }
     }
 }

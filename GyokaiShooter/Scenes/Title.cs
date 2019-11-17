@@ -10,22 +10,19 @@ namespace GyokaiShooter
     {
         protected override void OnRegistered()
         {
-            //var titleCols = new TitleCols();
-            //AddLayer(titleCols);
-            //var titleTexts = new TitleTexts();
-            //AddLayer(titleTexts);
-            var button = new Objects.Button();
-            Objects.Button.keyValuePairs = new Dictionary<string, Action>()
+            var button = new Objects.Button
             {
-                {"Start Game", () => {} },
-                {"Records", () => {} },
-                {"Option", () => {} },
-                {"Quit", () => {asd.Engine.Close(); } }
+                keyValuePairs = new Dictionary<string, Action>()
+                {
+                    {"Start Game", () => {} },
+                    {"Records", () => {} },
+                    {"Option", () => {} },
+                    {"Quit", () => {asd.Engine.Close(); } }
+                },
+                buttonPos = new asd.Vector2DF(10, 65)
             };
-            Objects.Button.buttonPos = new asd.Vector2DF(10, 65);
             AddLayer(button);
         }
-
     }
 
     class TitleTexts : asd.Layer2D
