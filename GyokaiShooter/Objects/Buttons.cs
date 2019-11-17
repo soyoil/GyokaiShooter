@@ -62,13 +62,8 @@ namespace GyokaiShooter.Objects
             buttons[pointer].Color = coll;
             if(asd.Engine.Keyboard.GetKeyState(asd.Keys.Enter) == asd.ButtonState.Push)
             {
-                string buttonName = "";
-                var hoge = buttons[pointer].Children;
-                foreach(asd.TextObject2D fuga in hoge)
-                {
-                    buttonName = fuga.Text;
-                }
-                keyValuePairs[buttonName]();
+                var hoge = (asd.TextObject2D)buttons[pointer].Children.ElementAt(0);
+                keyValuePairs[hoge.Text]();
             }
         }
     }
