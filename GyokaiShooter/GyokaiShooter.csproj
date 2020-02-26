@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Objects\Buttons.cs" />
     <Compile Include="Scenes\Option.cs" />
+    <Compile Include="Scenes\SelectChara.cs" />
     <Compile Include="Scenes\Title.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +88,10 @@
     <Content Include="Altseed_core.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="imgs\ika.png" />
+    <Content Include="imgs\kai.png" />
+    <Content Include="imgs\kani.png" />
+    <Content Include="imgs\tako.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

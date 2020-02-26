@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GyokaiShooter
 {
@@ -21,7 +17,7 @@ namespace GyokaiShooter
             // Altseedを初期化する。
             asd.Engine.Initialize("GyokaiShooter", 640, 480, engineOption);
 
-            var title = new Title();
+            var title = new Scenes.Title();
             asd.Engine.ChangeScene(title);
 
             // Altseedが進行可能かチェックする。
