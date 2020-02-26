@@ -24,9 +24,10 @@ namespace GyokaiShooter.Scenes
             int count = 0;
             foreach(string url in charas)
             {
+                var tex = asd.Engine.Graphics.CreateTexture2D(url);
                 var img = new asd.TextureObject2D
                 {
-                    Texture = asd.Engine.Graphics.CreateTexture2D(url),
+                    Texture = tex,
                     Position = new asd.Vector2DF(10 + count * 200, 50)
                 };
                 titleText.AddObject(img);
